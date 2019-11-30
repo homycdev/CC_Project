@@ -4,7 +4,7 @@ classDeclaration: 'class' className  ('extends' className)? 'is'
             memberDeclaration*
         'end';
 
-className: Identifier ;
+className: Identifier ('[' className ']')?;
 
 
 memberDeclaration
@@ -53,7 +53,7 @@ returnStatement
     ;
 
 expression
-    : primary ('.' Identifier arguments?)*
+    : primary arguments? ('.' Identifier arguments?)*
     ;
 
 arguments
