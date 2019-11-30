@@ -2,8 +2,8 @@
 ## Requirements:
 * Download library: http://www.antlr.org/download/antlr-4.7.1-complete.jar
 * Go to IntelliJ IDE:
-    * Press `CTRL + ALT + SHIFT + S`.
-    * In `Project settings` you will find modules, press on it
+    * Press `File`, in oppened window select `project structure`.
+    * In `Project settings/structure` you will find modules, press on it
     * Find on the right center side tab named `Dependencies`, press it
     * Press `+` sign
     * In opened menu choose `JARs or Directories`
