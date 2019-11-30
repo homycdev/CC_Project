@@ -1,7 +1,7 @@
 grammar OLang;
 
-classDeclaration: 'class' className '[' 'extends' className ']' 'is'
-            '{' memberDeclaration '}'
+classDeclaration: 'class' className  ('extends' className)? 'is'
+            memberDeclaration
         'end';
 
 className: Identifier ;
@@ -10,28 +10,29 @@ className: Identifier ;
 memberDeclaration
     : variableDeclaration
     | methodDeclaration
-    | constructorDeclaration;
+    | constructorDeclaration
+    | 'pass';
 
 variableDeclaration
     : 'var' Identifier ':' expression;
 
 methodDeclaration
-    : 'method' Identifier '[' parameters ']' '[' ':' Identifier ']'
+    : 'method' Identifier parameters? (':' Identifier)?
     'is' body 'end';
 
-parameters : '(' parameterDeclaration '{' ',' parameterDeclaration '}' ')'
+parameters : '(' parameterDeclaration (',' parameterDeclaration)* ')'
     ;
 
 parameterDeclaration
     : Identifier | className;
 
 body
-    : '{' variableDeclaration
-    | statement '}'
+    :  (variableDeclaration | statement)*
     ;
 
 constructorDeclaration
-    : 'this' '[' parameters ']' 'is' body 'end';
+    : 'this' parameters? 'is' body 'end';
+
 statement
     : assignment
     | whileLoop
@@ -42,20 +43,21 @@ assignment : Identifier ':=' expression;
 
 whileLoop
     : 'while' expression 'loop' body 'end';
+
 ifStatement
-    : 'if' expression 'then' body '[' 'else' body ']' 'end'
+    : 'if' expression 'then' body  ('else' body)? 'end'
     ;
 
 returnStatement
-    : 'return' '[' expression ']'
+    : 'return' expression?
     ;
 
 expression
-    : primary '{' '.' Identifier '[' arguments ']' '}'
+    : primary ('.' Identifier arguments?)*
     ;
 
 arguments
-    : '(' expression '{' ',' expression '}' ')'
+    : '(' expression (',' expression)* ')'
     ;
 
 primary
@@ -70,8 +72,6 @@ primary
 
 LPAREN : '(';
 RPAREN : ')';
-LBRACE : '{';
-RBRACE : '}';
 LBRACK : '[';
 RBRACK : ']';
 SEMI : ';';
