@@ -1,7 +1,7 @@
 grammar OLang;
 
 classDeclaration: 'class' className  ('extends' className)? 'is'
-            memberDeclaration
+            memberDeclaration*
         'end';
 
 className: Identifier ;
@@ -24,7 +24,7 @@ parameters : '(' parameterDeclaration (',' parameterDeclaration)* ')'
     ;
 
 parameterDeclaration
-    : Identifier | className;
+    : Identifier ':' className;
 
 body
     :  (variableDeclaration | statement)*
@@ -78,6 +78,7 @@ SEMI : ';';
 COMMA : ',';
 DOT : '.';
 ASSIGN: ':=';
+COLON: ':';
 
 // Keywords
 END : 'end';
