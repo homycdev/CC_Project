@@ -1,8 +1,9 @@
 grammar OLang;
 
+
 classDeclaration: 'class' className  ('extends' className)? 'is'
             memberDeclaration*
-        'end';
+        'end'{};
 
 className: Identifier ;
 
@@ -120,6 +121,8 @@ LetterOrDigit
 		[\uD800-\uDBFF] [\uDC00-\uDFFF]
 		{Character.isJavaIdentifierPart(Character.toCodePoint((char)_input.LA(-2), (char)_input.LA(-1)))}?
 	;
+
+
 
 
 // Integer Literals

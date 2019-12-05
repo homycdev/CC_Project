@@ -20,6 +20,7 @@ public class OLangBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
      */
     @Override
     public T visitClassDeclaration(OLangParser.ClassDeclarationContext ctx) {
+
         return visitChildren(ctx);
     }
 
